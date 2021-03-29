@@ -1,6 +1,8 @@
 'use strict';
-const names = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissots','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'];
-
+const names = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissots','shark','tauntaun','unicorn','water-can','wine-glass'];
+let leftIndex;
+let middleIndex;
+let rightIndex;
 function randomNumber (min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -12,7 +14,7 @@ const imageSection = document.getElementById('image-section');
 
 function Product(name){
   this.name=name,
-  this.imagePath= `./assets/${name}.jbg`;
+  this.imagePath= `assets/${this.name}.jpg`;
   this.votes=0;
   this.views=0;
   Product.all.push(this);
@@ -23,20 +25,38 @@ for (let i=0; i<names.length; i++) {
   new Product(names[i]);
 }
 // console.table(Product.all);
+
 function render(){
-  const leftIndex = randomNumber(0,Product.all.length-1);
+  leftIndex = randomNumber(0,Product.all.length-1);
   leftImage.src =Product.all[leftIndex].imagePath;
   leftImage.alt = Product.all[leftIndex].name;
   leftImage.title = Product.all[leftIndex].name;
 
-  const middleIndex = randomNumber(0,Product.all.length-1);
+  middleIndex = randomNumber(0,Product.all.length-1);
   middleImage.src =Product.all[middleIndex].imagePath;
   middleImage.alt = Product.all[middleIndex].name;
   middleImage.title = Product.all[middleIndex].name;
 
-  const rightIndex = randomNumber(0,Product.all.length-1);
+  rightIndex = randomNumber(0,Product.all.length-1);
   rightImage.src =Product.all[rightIndex].imagePath;
   rightImage.alt = Product.all[rightIndex].name;
   rightImage.title = Product.all[rightIndex].name;
 }
 render();
+
+imageSection.addEventListener('click',mouseClick);
+function mouseClick (event){
+  // console.log(event.targrt.id);
+  if(event.target.id !== 'images-section'){
+    if(event.target.id === rightImage.id){
+      Product.all[rightIndex].votes++;
+    }
+    else if (event.target.id === middleImage.id){
+      Product.all[middleIndex].votes++;
+    }
+    else{
+      Product.all[leftIndex].votes++;
+    }
+  }
+  console.table(Product.all);
+}

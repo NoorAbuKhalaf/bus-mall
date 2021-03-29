@@ -6,6 +6,7 @@ header {
     background: #000000;
     color: #000;;
     margin-bottom: 20px;
+    box-shadow:  #57575745; ;
   }
   header nav ul {
     list-style: none;
@@ -29,10 +30,17 @@ header {
     background-color: #57575745;
   }
   #images-section {
-    max-width: 90%;
+    max-width: 80%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 20px;
+  }
+  .imgView {
+    width:20%;
+    height:20%;
+    margin-top: 7%;
+    margin-left: 7%;
+    border-radius: 5%;
   }
   h1{
     text-align: center;
@@ -41,3 +49,5 @@ header {
     color:rgb(88, 30, 48);
     text-shadow: rgb(58, 58, 58) 1px 0 10px;
   }
+  
+
