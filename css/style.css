@@ -1,0 +1,43 @@
+body {
+    background-color: cornsilk;
+}
+header {
+    text-align: center;
+    background: #000000;
+    color: #000;;
+    margin-bottom: 20px;
+  }
+  header nav ul {
+    list-style: none;
+  }
+  header nav ul li {
+    display: inline-block;
+    padding: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  header nav ul li a {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-weight: 100;
+  }
+
+  header nav ul li:hover {
+    background-color: #57575745;
+  }
+  #images-section {
+    max-width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+  }
+  h1{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    color:rgb(88, 30, 48);
+    text-shadow: rgb(58, 58, 58) 1px 0 10px;
+  }
