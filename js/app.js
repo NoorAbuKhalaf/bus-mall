@@ -1,5 +1,5 @@
 'use strict';
-const names = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissots','shark','tauntaun','unicorn','water-can','wine-glass'];
+const names = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','shark','tauntaun','unicorn','water-can','wine-glass'];
 let leftIndex;
 let middleIndex;
 let rightIndex;
@@ -9,7 +9,7 @@ function randomNumber (min, max) {
 const leftImage = document.getElementById('left-image');
 const middleImage =document.getElementById('middle-image');
 const rightImage =document.getElementById('right-image');
-const imageSection = document.getElementById('image-section');
+const imageSection = document.getElementById('images-section');
 // console.log(leftImage);
 
 function Product(name){
@@ -58,5 +58,7 @@ function mouseClick (event){
       Product.all[leftIndex].votes++;
     }
   }
-  console.table(Product.all);
+  // console.table(Product.all);
+  render();
 }
+
