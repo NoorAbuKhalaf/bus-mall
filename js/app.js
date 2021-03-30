@@ -3,6 +3,8 @@ const names = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair'
 let leftIndex;
 let middleIndex;
 let rightIndex;
+let maxAttempts=5;
+let attempts =0;
 function randomNumber (min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -31,32 +33,47 @@ function render(){
   leftImage.src =Product.all[leftIndex].imagePath;
   leftImage.alt = Product.all[leftIndex].name;
   leftImage.title = Product.all[leftIndex].name;
+  Product.all[leftIndex].views++;
 
   middleIndex = randomNumber(0,Product.all.length-1);
   middleImage.src =Product.all[middleIndex].imagePath;
   middleImage.alt = Product.all[middleIndex].name;
   middleImage.title = Product.all[middleIndex].name;
+  Product.all[middleIndex].views++;
 
   rightIndex = randomNumber(0,Product.all.length-1);
   rightImage.src =Product.all[rightIndex].imagePath;
   rightImage.alt = Product.all[rightIndex].name;
   rightImage.title = Product.all[rightIndex].name;
+  Product.all[rightIndex].views++;
 }
 render();
 
 imageSection.addEventListener('click',mouseClick);
 function mouseClick (event){
   // console.log(event.targrt.id);
-  if(event.target.id !== 'images-section'){
-    if(event.target.id === rightImage.id){
-      Product.all[rightIndex].votes++;
+  if (attempts<maxAttempts){
+    attempts++;
+    if(event.target.id !== 'images-section'){
+      if(event.target.id === rightImage.id){
+        Product.all[rightIndex].votes++;
+      }
+      else if (event.target.id === middleImage.id){
+        Product.all[middleIndex].votes++;
+      }
+      else{
+        Product.all[leftIndex].votes++;
+      }
     }
-    else if (event.target.id === middleImage.id){
-      Product.all[middleIndex].votes++;
+  } else{
+    let ulEl = document.getElementById('listResult');
+    let liEl;
+    for (let i=0;i<Product.all.length;i++){
+      liEl=document.createElement('li');
+      liEl.textContent=`${Product.all[i].name} has ${Product.all[i].views} views and has ${Product.all[i].votes} votes`;
+      ulEl.appendChild(liEl);
     }
-    else{
-      Product.all[leftIndex].votes++;
-    }
+    imageSection.removeEventListener('click',mouseClick);
   }
   // console.table(Product.all);
   render();
