@@ -3,8 +3,10 @@ const names = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair'
 let leftIndex;
 let middleIndex;
 let rightIndex;
-let maxAttempts=5;
+let maxAttempts=24;
 let attempts =0;
+let votes=[];
+let views=[];
 function randomNumber (min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -69,13 +71,42 @@ function mouseClick (event){
     let ulEl = document.getElementById('listResult');
     let liEl;
     for (let i=0;i<Product.all.length;i++){
+      votes.push(Product.all[i].votes);
+      views.push(Product.all[i].views);
+
       liEl=document.createElement('li');
       liEl.textContent=`${Product.all[i].name} has ${Product.all[i].views} views and has ${Product.all[i].votes} votes`;
       ulEl.appendChild(liEl);
     }
     imageSection.removeEventListener('click',mouseClick);
+    chartRender();
   }
   // console.table(Product.all);
   render();
 }
+function chartRender(){
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
 
+    // The data for our dataset
+    data: {
+      labels: names,
+      datasets: [{
+        label: 'Bus-mall products votes',
+        backgroundColor: 'red',
+        borderColor: 'rgb(255, 99, 132)',
+        data: votes,
+      },{
+        label: 'Bus-mall products views',
+        backgroundColor: 'green',
+        borderColor: 'rgb(255, 99, 132)',
+        data: views,
+      }]
+    },
+
+    // Configuration options go here
+    options: {}
+  });
+}
